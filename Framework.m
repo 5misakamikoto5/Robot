@@ -5,8 +5,8 @@ Read_Data;
 % 将动捕得到的位姿数据转换为齐次变换矩阵形式
 AA = [ ];
 for i =1:6
-    Tca = T_tran(base_Data(i,4:6),base_Data(i,1:3));
-    Tcb = T_tran(penqiang_Data(i,4:6),penqiang_Data(i,1:3));
+    Tca = T_tran(base_Data(i,1:3),base_Data(i,4:6));
+    Tcb = T_tran(penqiang_Data(i,1:3),penqiang_Data(i,4:6));
     AA = [AA T_inverse(Tca)*Tcb];
 end
 
@@ -31,7 +31,7 @@ Ta0 = Y;
 process_data = [];
 % T07 = inv(Tca*Ta0)*Tcb*(T7b)^-1;
 for i =1:440
-    T_tmp = T_tran(demonstrations_data(i,4:6),demonstrations_data(i,1:3));
+    T_tmp = T_tran(demonstrations_data(i,1:3),demonstrations_data(i,4:6));
     T2_tmp = T_inverse(Tca*Ta0) * T_tmp * T_inverse(T7b);      %转换后
     e = rotm2eul(T2_tmp(1:3,1:3),'ZYX');
     process_data = [process_data;e,T2_tmp(1:3,4)']    
