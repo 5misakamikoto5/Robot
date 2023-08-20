@@ -37,11 +37,10 @@ angle_Data (:,3) = angle_Data (:,3)+pi/2;
 angle_Data (:,5) = angle_Data (:,5)-pi;
 angle_Data (:,6) = angle_Data (:,6)+pi/2;
 
-%% 末端运动过程数据
+%% 末端刚体运动过程的数据
 demonstrations_path = 'demonstrations_end.xlsx';
 demonstrations_range = 'B25:G464';
 demonstrations_data = readmatrix(demonstrations_path,'Range',demonstrations_range);
-
 demonstrations_data(:,1:3) = demonstrations_data(:,1:3) /1000;
 demonstrations_data(:,4:6) = demonstrations_data(:,4:6) *pi/180;
 
